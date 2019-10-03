@@ -1,0 +1,42 @@
+.logic-gate {
+    .mode label {
+        cursor: pointer;
+
+        &.focus,
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
+    .logic-gate-svg-select,
+    .truth-table {
+        display: block;
+        text-align: center;
+        border: 1px solid black;
+        border-radius: 4px;
+    }
+
+    .truth-table {
+        h3 {
+            margin-bottom: 0;
+            cursor: pointer;
+        }
+        .data {
+            border-top: 1px solid black;
+        }
+    }
+}
+
+.logic-gate-svg-test,
+.logic-gate-svg-select {
+    .radio .inner {
+        display: none;
+    }
+
+    .radio:hover,
+    .radio.checked {
+        .inner {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html><head>
+    <meta charset="UTF-8">
+    <title>Logic gate</title>
+    <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' app: ;" />
+    <link rel="stylesheet" href="app://build/app.css">
+</head>
+<body>
+<div class="container-fluid page-about">
+    <div class="row">
+        <div class="col-12 mb-1 text-center">
+            <div class="box-blue">
+                <div class="data"></div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="container-fluid logic-gate">
+    <div class="row">
+        <div class="col-12 mb-1 text-center">
+            <div class="mode">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="mode" value="0" autocomplete="off" checked> NOT
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="mode" value="1" autocomplete="off"> AND
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="mode" value="2" autocomplete="off"> OR
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="mode" value="3" autocomplete="off"> XOR
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="mode" value="4" autocomplete="off"> NAND
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="mode" value="5" autocomplete="off"> NOR
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="mode" value="6" autocomplete="off"> XNOR
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-8">
+            <svg class="logic-gate-svg-select" fill="currentColor" preserveAspectRatio="xMidYMid meet" width="400" height="155" viewBox="0 0 400 155">
+                <rect x="100" y="18" width="150" height="120" fill="lightgrey" stroke="grey" stroke-width="5"/>
+                <text class="boxTextTop" x="175" y="58" dominant-baseline="middle" text-anchor="middle">&&</text>
+                <text class="boxTextMiddle" x="175" y="78" dominant-baseline="middle" text-anchor="middle">AND</text>
+                <text class="boxTextBottom" x="175" y="98" dominant-baseline="middle" text-anchor="middle">(true && true)</text>
+
+                <line class="lineA" x1="0" y1="48" x2="100" y2="48" stroke="grey" stroke-width="3"/>
+                <line class="lineB" x1="0" y1="108" x2="100" y2="108" stroke="grey" stroke-width="3"/>
+                <line class="lineY" x1="250" y1="78" x2="350" y2="78" stroke="grey" stroke-width="3"/>
+
+                <svg x="0" y="3" class="radio radioA checked" cursor="pointer" data-value="1">
+                    <rect class="bg" x="1" y="1" width="90" height="20" fill="transparent" />
+                    <rect class="outer" x="3" y="3" width="16" height="16" fill="none" stroke="grey" stroke-width="2" stroke-linejoin="round" />
+                    <rect class="inner" x="7" y="7" width="8" height="8" fill="grey" stroke="grey" stroke-width="2" stroke-linejoin="round"/>
+                    <text class="text" x="24" y="13" dominant-baseline="middle" text-anchor="start">1 - true</text>
+                </svg>
+                <svg x="0" y="23" class="radio radioA" cursor="pointer" data-value="0">
+                    <rect class="bg" x="1" y="1" width="90" height="20" fill="transparent" />
+                    <rect class="outer" x="3" y="3" width="16" height="16" fill="none" stroke="grey" stroke-width="2" stroke-linejoin="round" />
+                    <rect class="inner" x="7" y="7" width="8" height="8" fill="grey" stroke="grey" stroke-width="2" stroke-linejoin="round"/>
+                    <text class="text" x="24" y="13" dominant-baseline="middle" text-anchor="start">0 - false</text>
+                </svg>
+
+                <svg x="0" y="111" class="radio radioB checked" cursor="pointer" data-value="1">
+                    <rect class="bg" x="1" y="1" width="90" height="20" fill="transparent" />
+                    <rect class="outer" x="3" y="3" width="16" height="16" fill="none" stroke="grey" stroke-width="2" stroke-linejoin="round" />
+                    <rect class="inner" x="7" y="7" width="8" height="8" fill="grey" stroke="grey" stroke-width="2" stroke-linejoin="round"/>
+                    <text class="text" x="24" y="13" dominant-baseline="middle" text-anchor="start">1 - true</text>
+                </svg>
+                <svg x="0" y="131" class="radio radioB" cursor="pointer" data-value="0">
+                    <rect class="bg" x="1" y="1" width="90" height="20" fill="transparent" />
+                    <rect class="outer" x="3" y="3" width="16" height="16" fill="none" stroke="grey" stroke-width="2" stroke-linejoin="round" />
+                    <rect class="inner" x="7" y="7" width="8" height="8" fill="grey" stroke="grey" stroke-width="2" stroke-linejoin="round"/>
+                    <text class="text" x="24" y="13" dominant-baseline="middle" text-anchor="start">0 - false</text>
+                </svg>
+
+                <text class="executeHeader" x="255" y="45" dominant-baseline="middle" text-anchor="start" font-weight="bold">Execute:</text>
+                <text class="executeText" x="255" y="65" dominant-baseline="middle" text-anchor="start">(true && true)</text>
+
+                <text class="resultHeader" x="255" y="95" dominant-baseline="middle" text-anchor="start" font-weight="bold">Result:</text>
+                <text class="resultText" x="255" y="115" dominant-baseline="middle" text-anchor="start">true</text>
+            </svg>
+        </div>
+        <div class="col-4">
+            <div class="truth-table">
+                <h3 data-toggle="collapse" data-target="#truth-table-collapse">Truth table</h3>
+                <div class="data collapse" id="truth-table-collapse"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="app://electron.js"></script>
+<script src="app://build/app.js"></script>
+</body></html>
