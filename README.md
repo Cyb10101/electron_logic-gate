@@ -1,10 +1,13 @@
 # Logic gate
 
+A logic gate is an arrangement for realizing a Boolean function that processes binary input signals into a binary output signal.
+
+# Development
+
 ## Install electron
 
 ```bash
 yarn add electron electron-builder --dev
-yarn add electron-store --dev
 ```
 
 ## WebPack
@@ -25,4 +28,5 @@ Website requirements:
 yarn add jquery
 yarn add popper.js bootstrap
 yarn add @fortawesome/fontawesome-free
+yarn add electron-store
 ```
