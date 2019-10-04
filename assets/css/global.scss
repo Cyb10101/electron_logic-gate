@@ -14,8 +14,12 @@ body {
     padding: 5px;
     //min-height: 100%;
     font-family: 'Open Sans', sans-serif;
-    background: #eaeaea;
+    background-color: #eaeaea;
     @include user-select(none);
+}
+
+nav.navbar {
+    background-color: #eaeaea;
 }
 
 .box-blue {

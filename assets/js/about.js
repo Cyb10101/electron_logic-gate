@@ -1,28 +1,33 @@
 'use strict';
 
+const remote = require('electron').remote;
+
 class About {
-    constructor(selector) {
-        this.rootDiv = document.querySelector(selector);
-        this.bindModeButtons();
+    constructor() {
+        this.writeInformation();
     }
 
-    bindModeButtons() {
-        let html = '';
-        html += '<b>Chrome:</b> ' + global.process.versions.chrome + '<br>';
-        html += '<b>Node:</b> ' + global.process.versions.node + '<br>';
-        html += '<b>Electron:</b> ' + global.process.versions.electron + '<br>';
-        html += '<b>window.devicePixelRatio:</b> ' + window.devicePixelRatio + '<br>';
-        html += '<b>localStorage:</b> ' + ('localStorage' in window) + '<br>';
-        html += '<b>sessionStorage:</b> ' + ('sessionStorage' in window) + '<br>';
-        this.rootDiv.querySelector('.data').innerHTML = html;
-        console.log('about', sessionStorage.getItem('autoReload'));
+    writeInformation() {
+        let aboutInfo = document.querySelector('.about-information');
+        if (aboutInfo) {
+            let html = '<h4>Information</h4>';
+            html += '<table class="table table-striped">';
+            html += '<thead><tr><th scope="col">Key</th><th scope="col">Value</th></tr></thead>';
+            html += '<tbody>';
+            html += '<tr><td>Node</td><td>' + global.process.versions.node + '</td></tr>';
+            html += '<tr><td>Electron</td><td>' + global.process.versions.electron + '</td></tr>';
+            html += '<tr><td>Chrome</td><td>' + global.process.versions.chrome + '</td></tr>';
+            html += '<tr><td>User data</td><td>' + remote.app.getPath('userData') + '</td></tr>';
+            html += '</tbody>';
+            html += '</table>';
+
+            let div = document.createElement('div');
+            div.innerHTML = html;
+            aboutInfo.appendChild(div);
+        }
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    if (document.querySelector('.page-about')) {
-        console.log(global.process);
-        console.log(global.process.env);
-        const about = new About('.page-about');
-    }
+    const about = new About();
 });
