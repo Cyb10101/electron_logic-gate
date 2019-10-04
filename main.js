@@ -1,6 +1,5 @@
 const {app, protocol, BrowserWindow, Menu} = require('electron');
 const path = require('path');
-const url = require('url');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -28,20 +27,28 @@ function createWindowMain() {
         useContentSize: true,
         icon: path.join(__dirname, 'assets/images/icons/round-corner/64x64.png'),
         webPreferences: {
-            // partition: 'persist:app',
             nodeIntegration: true
         }
     });
 
+    let scheme = 'app';
+    windowMain.webContents.session.protocol.registerFileProtocol(scheme, (request, callback) => {
+        const url = request.url.substr(scheme.length + 3);
+        callback({path: path.normalize(`${__dirname}/public/${url}`)});
+    }, (error) => {
+        if (error) {
+            console.error('Failed to register protocol');
+        }
+    });
+
+    // @todo development test
     const {screen} = require('electron');
     console.log('ScaleFactor: ', screen.getPrimaryDisplay().scaleFactor);
-
 
     if (isDevelopment()) {
         windowMain.webContents.openDevTools();
     }
 
-    //windowMain.loadFile('public/index.html');
     windowMain.loadURL('app://index.html');
 
     // Emitted when the window is closed.
@@ -58,13 +65,7 @@ function createWindowMain() {
 
 const mainMenuTemplate = [{
     label: 'File',
-    submenu: [
-        {
-            label: 'About',
-            click() {
-                windowMain.loadURL('app://about.html');
-            }
-        },{
+    submenu: [{
             label: 'Quit',
             accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
             click() {
@@ -84,38 +85,19 @@ if (isDevelopment()) {
         label: 'Development',
         submenu: [{
             role: 'toggledevtools'
-        },{
-            id: 'autoReload',
-            label: 'Automatic reload',
-            type: 'checkbox',
-            checked: true,
-            click(item, focusedWindow) {
-                focusedWindow.webContents.executeJavaScript('sessionStorage.setItem("autoReload", "' + item.checked + '");');
-                console.log('ccc', item.checked);
-            }
         }]
-    },{
+    }, {
+        label: 'Dashboard',
+        click() {
+            windowMain.loadURL('app://index.html');
+        }
+    }, {
         role: 'reload',
         accelerator: process.platform === 'darwin' ? '' : 'F5',
     });
 }
 
-// protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: {secure: true, standard: true, bypassCSP: true}}]);
-// protocol.registerSchemesAsPrivileged([{scheme: 'app', privileges: {secure: true, standard: false, bypassCSP: true}}]);
-
 app.on('ready', () => {
-    let scheme = 'app';
-    // const { session } = require('electron');
-    // const partition = 'persist:app';
-    // const ses = session.fromPartition(partition);
-
-    // ses.protocol.registerFileProtocol(scheme, (request, callback) => {
-    protocol.registerFileProtocol(scheme, (request, callback) => {
-        const url = request.url.substr(scheme.length + 3);
-        callback({path: path.normalize(`${__dirname}/public/${url}`)})
-    }, (error) => {
-        if (error) console.error('Failed to register protocol')
-    });
     createWindowMain();
 });
 
