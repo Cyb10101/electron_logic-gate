@@ -7,17 +7,16 @@
     <link rel="stylesheet" href="app://build/app.css">
 </head>
 <body>
-<div class="container-fluid page-about">
-    <div class="row">
-        <div class="col-12 mb-1 text-center">
-            <div class="box-blue">
-                <div class="data"></div>
-            </div>
-        </div>
-
-    </div>
-</div>
 <div class="container-fluid logic-gate">
+    <div class="row">
+        <div class="col-12">
+            <ul class="nav mr-auto">
+                <li class="nav-item">
+                    <a href="app://about.html" class="nav-link text-dark"><i class="fas fa-info-circle"></i> About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 mb-1 text-center">
             <div class="mode">
@@ -48,7 +47,7 @@
         </div>
 
         <div class="col-8">
-            <svg class="logic-gate-svg-select" fill="currentColor" preserveAspectRatio="xMidYMid meet" width="400" height="155" viewBox="0 0 400 155">
+            <svg class="logic-gate-svg-select" fill="currentColor" preserveAspectRatio="xMidYMid meet" width="400" height="155" viewBox="0 0 400 155" xmlns="http://www.w3.org/2000/svg">
                 <rect x="100" y="18" width="150" height="120" fill="lightgrey" stroke="grey" stroke-width="5"/>
                 <text class="boxTextTop" x="175" y="58" dominant-baseline="middle" text-anchor="middle">&&</text>
                 <text class="boxTextMiddle" x="175" y="78" dominant-baseline="middle" text-anchor="middle">AND</text>
@@ -58,26 +57,26 @@
                 <line class="lineB" x1="0" y1="108" x2="100" y2="108" stroke="grey" stroke-width="3"/>
                 <line class="lineY" x1="250" y1="78" x2="350" y2="78" stroke="grey" stroke-width="3"/>
 
-                <svg x="0" y="3" class="radio radioA checked" cursor="pointer" data-value="1">
+                <svg x="0" y="3" class="radio radioA checked" cursor="pointer" data-value="1" xmlns="http://www.w3.org/2000/svg">
                     <rect class="bg" x="1" y="1" width="90" height="20" fill="transparent" />
                     <rect class="outer" x="3" y="3" width="16" height="16" fill="none" stroke="grey" stroke-width="2" stroke-linejoin="round" />
                     <rect class="inner" x="7" y="7" width="8" height="8" fill="grey" stroke="grey" stroke-width="2" stroke-linejoin="round"/>
                     <text class="text" x="24" y="13" dominant-baseline="middle" text-anchor="start">1 - true</text>
                 </svg>
-                <svg x="0" y="23" class="radio radioA" cursor="pointer" data-value="0">
+                <svg x="0" y="23" class="radio radioA" cursor="pointer" data-value="0" xmlns="http://www.w3.org/2000/svg">
                     <rect class="bg" x="1" y="1" width="90" height="20" fill="transparent" />
                     <rect class="outer" x="3" y="3" width="16" height="16" fill="none" stroke="grey" stroke-width="2" stroke-linejoin="round" />
                     <rect class="inner" x="7" y="7" width="8" height="8" fill="grey" stroke="grey" stroke-width="2" stroke-linejoin="round"/>
                     <text class="text" x="24" y="13" dominant-baseline="middle" text-anchor="start">0 - false</text>
                 </svg>
 
-                <svg x="0" y="111" class="radio radioB checked" cursor="pointer" data-value="1">
+                <svg x="0" y="111" class="radio radioB checked" cursor="pointer" data-value="1" xmlns="http://www.w3.org/2000/svg">
                     <rect class="bg" x="1" y="1" width="90" height="20" fill="transparent" />
                     <rect class="outer" x="3" y="3" width="16" height="16" fill="none" stroke="grey" stroke-width="2" stroke-linejoin="round" />
                     <rect class="inner" x="7" y="7" width="8" height="8" fill="grey" stroke="grey" stroke-width="2" stroke-linejoin="round"/>
                     <text class="text" x="24" y="13" dominant-baseline="middle" text-anchor="start">1 - true</text>
                 </svg>
-                <svg x="0" y="131" class="radio radioB" cursor="pointer" data-value="0">
+                <svg x="0" y="131" class="radio radioB" cursor="pointer" data-value="0" xmlns="http://www.w3.org/2000/svg">
                     <rect class="bg" x="1" y="1" width="90" height="20" fill="transparent" />
                     <rect class="outer" x="3" y="3" width="16" height="16" fill="none" stroke="grey" stroke-width="2" stroke-linejoin="round" />
                     <rect class="inner" x="7" y="7" width="8" height="8" fill="grey" stroke="grey" stroke-width="2" stroke-linejoin="round"/>
@@ -100,6 +99,5 @@
     </div>
 </div>
 
-<script src="app://electron.js"></script>
 <script src="app://build/app.js"></script>
 </body></html>

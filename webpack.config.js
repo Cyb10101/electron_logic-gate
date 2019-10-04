@@ -45,6 +45,19 @@ module.exports = (env, argv) => {
                 }]
             }],
         },
+        externals: [
+            (function () {
+                var IGNORES = [
+                    'electron', 'electron-store', 'fs'
+                ];
+                return function (context, request, callback) {
+                    if (IGNORES.indexOf(request) >= 0) {
+                        return callback(null, "require('" + request + "')");
+                    }
+                    return callback();
+                };
+            })()
+        ],
         plugins: [
             new MiniCssExtractPlugin({
                 filename: '[name].css',
