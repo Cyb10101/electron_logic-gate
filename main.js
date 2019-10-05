@@ -3,24 +3,63 @@ const path = require('path');
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let windowMain;
+let mainWindow;
 
 // Remove Content-Security-Policy warning
 //process.env['ELECTRON_DISABLE_SECURITY_WARNINGS'] = 'true';
 
 function isDevelopment() {
-    return global.process.env.APP_ENV && global.process.env.APP_ENV === 'dev';
+    return (global.process.env.APP_ENV && global.process.env.APP_ENV === 'dev');
 }
 
 function isWindows() {
-    return process.platform === 'win32'; // Even on 64 bit
+    return (process.platform === 'win32'); // Even on 64 bit
 }
 
-function createWindowMain() {
-    let windowHeight = 20; // Linux
-    windowMain = new BrowserWindow({
+function mainWindowMenu() {
+    const mainMenuTemplate = [{
+        label: 'File',
+        submenu: [{
+            label: 'Quit',
+            accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
+            click() {
+                app.quit();
+            }
+        }
+        ]
+    }, {
+        label: 'Development',
+        submenu: [{
+            label: 'Developer Tools',
+            role: 'toggledevtools'
+        }]
+    }, {
+        label: 'Dashboard',
+        click() {
+            mainWindow.loadURL('app://index.html');
+        }
+    }, {
+        role: 'reload',
+        accelerator: process.platform === 'darwin' ? '' : 'F5',
+    }];
+
+    // If mac, ad empty object to menu
+    if (process.platform === 'darwin') {
+        mainMenuTemplate.unshift({});
+    }
+
+    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
+    if (isDevelopment()) {
+        Menu.setApplicationMenu(mainMenu);
+    } else {
+        Menu.setApplicationMenu(null);
+    }
+}
+
+function mainWindowCreate() {
+    mainWindow = new BrowserWindow({
         width: 700 + (isDevelopment() ? 555 : 0), // + DevTools
-        height: windowHeight + (isDevelopment() ? 600 : 222), // Menu + Window
+        height: (isDevelopment() ? 600 : 262), // Menu + Window
         frame: true,
         autoHideMenuBar: false,
         resizable: true,
@@ -32,7 +71,7 @@ function createWindowMain() {
     });
 
     let scheme = 'app';
-    windowMain.webContents.session.protocol.registerFileProtocol(scheme, (request, callback) => {
+    mainWindow.webContents.session.protocol.registerFileProtocol(scheme, (request, callback) => {
         const url = request.url.substr(scheme.length + 3);
         callback({path: path.normalize(`${__dirname}/public/${url}`)});
     }, (error) => {
@@ -46,59 +85,24 @@ function createWindowMain() {
     console.log('ScaleFactor: ', screen.getPrimaryDisplay().scaleFactor);
 
     if (isDevelopment()) {
-        windowMain.webContents.openDevTools();
+        mainWindow.webContents.openDevTools();
     }
 
-    windowMain.loadURL('app://index.html');
+    mainWindow.loadURL('app://index.html');
 
     // Emitted when the window is closed.
-    windowMain.on('closed', () => {
+    mainWindow.on('closed', () => {
         // Dereference the window object, usually you would store windows
         // in an array if your app supports multi windows, this is the time
         // when you should delete the corresponding element.
-        windowMain = null
-    });
-
-    const mainMenu = Menu.buildFromTemplate(mainMenuTemplate);
-    Menu.setApplicationMenu(mainMenu);
-}
-
-const mainMenuTemplate = [{
-    label: 'File',
-    submenu: [{
-            label: 'Quit',
-            accelerator: process.platform === 'darwin' ? 'Command+Q' : 'Ctrl+Q',
-            click() {
-                app.quit();
-            }
-        }
-    ]
-}];
-
-// If mac, ad empty object to menu
-if (process.platform === 'darwin') {
-    mainMenuTemplate.unshift({});
-}
-
-if (isDevelopment()) {
-    mainMenuTemplate.push({
-        label: 'Development',
-        submenu: [{
-            role: 'toggledevtools'
-        }]
-    }, {
-        label: 'Dashboard',
-        click() {
-            windowMain.loadURL('app://index.html');
-        }
-    }, {
-        role: 'reload',
-        accelerator: process.platform === 'darwin' ? '' : 'F5',
+        mainWindow = null
     });
 }
+
 
 app.on('ready', () => {
-    createWindowMain();
+    mainWindowMenu();
+    mainWindowCreate();
 });
 
 // Quit when all windows are closed.
@@ -113,7 +117,7 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
-    if (windowMain === null) {
+    if (mainWindow === null) {
         createWindow();
     }
 });
