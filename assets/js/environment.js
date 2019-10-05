@@ -12,6 +12,10 @@ class Environment {
     isWindows() {
         return (global.process.platform === 'win32'); // Even on 64 bit
     }
+
+    isMac() {
+        return (global.process.platform === 'darwin'); // Even on 64 bit
+    }
 }
 
 export const environment = new Environment();
