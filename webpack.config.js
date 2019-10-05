@@ -47,7 +47,7 @@ module.exports = (env, argv) => {
         },
         externals: [
             (function () {
-                var IGNORES = [
+                let IGNORES = [
                     'electron', 'electron-store', 'fs'
                 ];
                 return function (context, request, callback) {
