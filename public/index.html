@@ -20,28 +20,27 @@
     <div class="row">
         <div class="col-12 mb-1 text-center">
             <div class="mode">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary active">
-                        <input type="radio" name="mode" value="0" autocomplete="off" checked> NOT
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="mode" value="1" autocomplete="off"> AND
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="mode" value="2" autocomplete="off"> OR
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="mode" value="3" autocomplete="off"> XOR
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="mode" value="4" autocomplete="off"> NAND
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="mode" value="5" autocomplete="off"> NOR
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="mode" value="6" autocomplete="off"> XNOR
-                    </label>
+                <div class="btn-group" data-bs-toggle="buttons" role="group">
+                    <input type="radio"  class="btn-check" id="mode0" name="mode" value="0" autocomplete="off" checked>
+                    <label class="btn btn-secondary" for="mode0">NOT</label>
+
+                    <input type="radio"  class="btn-check" id="mode1" name="mode" value="1" autocomplete="off">
+                    <label class="btn btn-secondary" for="mode1">AND</label>
+
+                    <input type="radio"  class="btn-check" id="mode2" name="mode" value="2" autocomplete="off">
+                    <label class="btn btn-secondary" for="mode2">OR</label>
+
+                    <input type="radio"  class="btn-check" id="mode3" name="mode" value="3" autocomplete="off">
+                    <label class="btn btn-secondary" for="mode3">XOR</label>
+
+                    <input type="radio"  class="btn-check" id="mode4" name="mode" value="4" autocomplete="off">
+                    <label class="btn btn-secondary" for="mode4">NAND</label>
+
+                    <input type="radio"  class="btn-check" id="mode5" name="mode" value="5" autocomplete="off">
+                    <label class="btn btn-secondary" for="mode5">NOR</label>
+
+                    <input type="radio"  class="btn-check" id="mode6" name="mode" value="6" autocomplete="off">
+                    <label class="btn btn-secondary" for="mode6">XNOR</label>
                 </div>
             </div>
         </div>
