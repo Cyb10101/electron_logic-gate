@@ -141,7 +141,7 @@ class ElectronApp {
             autoHideMenuBar: false,
             resizable: true,
             useContentSize: true,
-            icon: path.join(__dirname, 'assets/images/icons/round-corner/64x64.png'),
+            icon: path.join(__dirname, 'assets/images/icons/round-corner/256x256.png'),
             webPreferences: {
                 nodeIntegration: true,
                 contextIsolation: false,

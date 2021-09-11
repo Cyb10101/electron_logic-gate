@@ -1,6 +1,6 @@
 {
     "name": "logic-gate",
-    "version": "0.0.1",
+    "version": "1.0.0",
     "description": "Logic gate",
     "author": "Thomas Schur <cyb10101@gmail.com>",
     "homepage": "https://cyb10101.de/",
@@ -35,6 +35,7 @@
         "artifactName": "${name}_${os}_${arch}.${ext}",
         "linux": {
             "category": "Education",
+            "icon": "assets/images/icons/round-corner/logo.icns",
             "target": [
                 {
                     "target": "AppImage",
@@ -53,12 +54,12 @@
             ]
         },
         "win": {
+            "icon": "assets/images/icons/round-corner/256x256.png",
             "target": [
                 {
                     "target": "portable"
                 }
-            ],
-            "icon": "assets/images/icons/round-corner/256x256.png"
+            ]
         }
     },
     "scripts": {
