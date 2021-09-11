@@ -1335,10 +1335,10 @@ electron-store@^5.0.0:
     conf "^6.0.0"
     type-fest "^0.7.1"
 
-electron@^6.0.11:
-  version "6.0.11"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-6.0.11.tgz#64effa71397045779a1ddbf51312a41ccf26f491"
-  integrity sha512-mi1oHmeFIQrg+CDQ6lbugZAloOxuWPm/ecEKYe1230PGlDoWND7SYStiWQ2eI4YXAEOL/NvuY88ogemu1qhdBg==
+electron@^6.0.12:
+  version "6.1.12"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-6.1.12.tgz#a7aee6dfa75b57f32b3645ef8e14dcef6d5f31a9"
+  integrity sha512-RUPM8xJfTcm53V9EKMBhvpLu1+CQkmuvWDmVCypR5XbUG1OOrOLiKl0CqUZ9+tEDuOmC+DmzmJP2MZXScBU5IA==
   dependencies:
     "@types/node" "^10.12.18"
     electron-download "^4.1.0"
