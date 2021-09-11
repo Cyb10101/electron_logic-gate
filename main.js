@@ -1,5 +1,5 @@
 const electron = require('electron');
-const {app, BrowserWindow, Menu} = require('electron');
+const {app, BrowserWindow, Menu, ipcMain, protocol} = require('electron');
 const path = require('path');
 const Store = require('electron-store');
 const store = new Store();
@@ -32,6 +32,25 @@ class ElectronApp {
     constructor() {
 
     }
+
+    connectIpc() {
+        let instance = this;
+
+        ipcMain.handle('config', function (event, args) {
+            if (args[0] === 'getVersion') {
+                return app.getVersion();
+            } else if (args[0] === 'getAppPath') {
+                return app.getAppPath();
+            } else if (args[0] === 'userData') {
+                return app.getPath('userData');
+            } else if (args[0] === 'getLocale') {
+                return app.getLocale();
+            }
+            // console.log('config undefined', args);
+            return null;
+        });
+    }
+
     mainWindowMenu() {
         const mainMenuTemplate = [{
             label: 'File',
@@ -124,22 +143,21 @@ class ElectronApp {
             useContentSize: true,
             icon: path.join(__dirname, 'assets/images/icons/round-corner/64x64.png'),
             webPreferences: {
-                nodeIntegration: true
+                nodeIntegration: true,
+                contextIsolation: false,
+                nativeWindowOpen: true
             }
         });
 
-        let scheme = 'app';
-        mainWindow.webContents.session.protocol.registerFileProtocol(scheme, (request, callback) => {
-            const url = request.url.substr(scheme.length + 3);
-            callback({path: path.normalize(`${__dirname}/public/${url}`)});
-        }, (error) => {
-            if (error) {
-                console.error('Failed to register protocol');
-            }
+        protocol.registerFileProtocol('app', (request, callback) => {
+            const url = request.url.substr(6)
+            callback({path: path.normalize(__dirname + '/public/' + url)})
         });
 
         // @todo development test
-        console.log('ScaleFactor: ', electron.screen.getPrimaryDisplay().scaleFactor);
+        if (environment.isDevelopment()) {
+            console.log('ScaleFactor: ', electron.screen.getPrimaryDisplay().scaleFactor);
+        }
 
         if (environment.isDevelopment()) {
             mainWindow.webContents.openDevTools();
@@ -162,6 +180,10 @@ class ElectronApp {
 let electronApp = new ElectronApp();
 
 app.on('ready', () => {
+});
+
+app.whenReady().then(() => {
+    electronApp.connectIpc();
     electronApp.mainWindowMenu();
     electronApp.mainWindowCreate();
 });
