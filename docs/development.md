@@ -60,5 +60,7 @@ Create new Github release:
 Upload files:
 
 * ./dist/logic-gate_linux_amd64.deb
+* ./dist/logic-gate_linux_i386.AppImage
 * ./dist/logic-gate_linux_i386.deb
-* ./dist/logic-gate_win.exe
+* ./dist/logic-gate_linux_x86_64.AppImage
+* ./dist/logic-gate_win_x64.exe
