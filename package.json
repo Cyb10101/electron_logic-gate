@@ -9,21 +9,24 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.11.2",
         "bootstrap": "^4.3.1",
-        "electron-store": "^5.0.0",
-        "jquery": "^3.4.1",
+        "electron-store": "^8.0.0",
+        "jquery": "^3.6.0",
         "popper.js": "^1.15.0"
     },
     "devDependencies": {
-        "css-loader": "^3.2.0",
+        "clean-webpack-plugin": "^4.0.0",
+        "css-loader": "^6.2.0",
         "electron": "^6.0.12",
-        "electron-builder": "^21.2.0",
+        "electron-builder": "^22.11.7",
         "file-loader": "^4.2.0",
         "friendly-errors-webpack-plugin": "^1.7.0",
-        "mini-css-extract-plugin": "^0.8.0",
-        "node-sass": "^4.12.0",
-        "sass-loader": "^8.0.0",
-        "webpack": "^4.41.0",
-        "webpack-cli": "^3.3.9"
+        "mini-css-extract-plugin": "^2.2.2",
+        "node-sass": "^6.0.1",
+        "sass": "^1.39.2",
+        "sass-loader": "^12.1.0",
+        "webpack": "^5.52.1",
+        "webpack-cli": "^4.8.0",
+        "webpack-manifest-plugin": "^4.0.2"
     },
     "build": {
         "appId": "com.cyb.${name}",
@@ -60,8 +63,11 @@
         "build:dev": "webpack --mode=development --watch",
         "start": "electron .",
         "start:dev": "APP_ENV=dev electron .",
+        "starthost": "./node_modules/electron/dist/electron .",
+        "starthost:dev": "APP_ENV=dev ./node_modules/electron/dist/electron .",
         "dist": "electron-builder",
         "dist:dev": "electron-builder --linux AppImage --x64",
+        "dist:win": "electron-builder --win",
         "dist:all": "electron-builder --linux --win"
     }
 }
