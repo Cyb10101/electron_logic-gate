@@ -3,7 +3,7 @@ import '../css/app.scss';
 global.$ = global.jQuery = require('jquery');
 
 require('bootstrap');
-require('./fontAwesome.js');
+import './font-awesome.js';
 
 import {Hook} from './hook.js';
 
