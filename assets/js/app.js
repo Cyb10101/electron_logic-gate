@@ -1,3 +1,5 @@
+'use strict';
+
 import '../css/app.scss';
 
 global.$ = global.jQuery = require('jquery');
