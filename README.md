@@ -15,9 +15,7 @@ Graphic explanation of a logic gate.
 | Windows | Linux | Mac |
 |:---:|:---:|:---:|
 | [logic-gate_win_64.exe](https://github.com/Cyb10101/electron_logic-gate/releases/latest/download/logic-gate_win_x64.exe) | [logic-gate_linux_amd64.deb](https://github.com/Cyb10101/electron_logic-gate/releases/latest/download/logic-gate_linux_amd64.deb) | Issue: Compiling without Mac |
-| | [logic-gate_linux_i386.deb](https://github.com/Cyb10101/electron_logic-gate/releases/latest/download/logic-gate_linux_i386.deb) | |
 | | [logic-gate_linux_x86_64.AppImage](https://github.com/Cyb10101/electron_logic-gate/releases/latest/download/logic-gate_linux_x86_64.AppImage) | |
-| | [logic-gate_linux_i386.AppImage](https://github.com/Cyb10101/electron_logic-gate/releases/latest/download/logic-gate_linux_i386.AppImage) | |
 
 ## Documentation
 
