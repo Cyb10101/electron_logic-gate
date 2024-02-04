@@ -32,6 +32,7 @@ yarn dist
 Create tag for release:
 
 ```bash
+# Change version in package.json
 git add package.json
 git commit -m'Version 1.1.0'
 git tag -a -m'Version 1.1.0' 'v1.1.0'
@@ -59,7 +60,5 @@ Create new Github release:
 Upload files:
 
 * ./dist/logic-gate_linux_amd64.deb
-* ./dist/logic-gate_linux_i386.AppImage
-* ./dist/logic-gate_linux_i386.deb
 * ./dist/logic-gate_linux_x86_64.AppImage
 * ./dist/logic-gate_win_x64.exe
